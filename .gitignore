@@ -1,3 +1,6 @@
+# Build folder
+[Bb]uild/
+.CMakeLists*
 # Prerequisites
 *.d
 

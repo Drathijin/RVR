@@ -1,5 +1,5 @@
-
-project("VideojueosEnRed", 2.1)
+cmake_minimum_required(VERSION 3.18)
+project("VideojueosEnRed")
 
 add_subdirectory(Practica2.1)
 
