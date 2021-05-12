@@ -3,6 +3,6 @@
 mkdir build
 cd build
 cmake ../
-cmake --build .
+cmake --build "."
 
 exit 0

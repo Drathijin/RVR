@@ -1,0 +1,24 @@
+{
+	"configurations": [
+		{
+			"name": "(gdb) Launch",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/build/Practica2.1/ejercicio2",
+			"args": ["127.0.0.1", "49671"],
+			"stopAtEntry": false,
+			"cwd": "${workspaceFolder}/",
+			"environment": [],
+			"externalConsole": false,
+			"MIMode": "gdb",
+			"setupCommands": [
+					{
+							"description": "Enable pretty-printing for gdb",
+							"text": "-enable-pretty-printing",
+							"ignoreFailures": true
+					}
+			]
+		}
+	
+	]
+}

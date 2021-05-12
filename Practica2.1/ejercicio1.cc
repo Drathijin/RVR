@@ -14,7 +14,6 @@ int main(int argn, char* argv[]){
 		return 1;
 	}
 
-	socklen_t addrlen;
 	char hbuf[NI_MAXHOST];
 	
 	addrinfo *info, *rp;
