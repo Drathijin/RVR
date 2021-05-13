@@ -7,13 +7,11 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <time.h>
-
+#include "utils.h"
 int main(int argn, char* argv[]){
 	if(argn < 4)
 	{
-		printf("Usage: ./%s [IP] [PORT] [Command] \n",argv[0]);
-		printf("\t Commands:\n \t\t>[t] get time\n\t\t>[d] get day\n\t\t>[q] quit server\n");
-		return 1;
+		printUDPClientUsage(argv[0]);
 	}
 
 	char* ip = argv[1];
@@ -23,12 +21,7 @@ int main(int argn, char* argv[]){
 
 	int sd = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
 	if(sd == -1)
-	{
-		const char* name = "Init";
-		fprintf(stderr, "Something went wrong with the initialization of the socket:\n\t");
-		perror(name);
-		return sd;
-	}
+		handleError("socket");
 
 
 	sockaddr_in servaddr;
@@ -45,8 +38,7 @@ int main(int argn, char* argv[]){
 		int bytes = recvfrom(sd, buffer,79,0,(struct sockaddr*)&servaddr, &servlen);
 		if(bytes == -1)
 		{
-			fprintf(stderr, "Something went wrong with the conection to server:\n\t");
-			return bytes;
+			handleError("recvfrom");
 		}
 		buffer[bytes] ='\0';
 		printf("%s\n",buffer);

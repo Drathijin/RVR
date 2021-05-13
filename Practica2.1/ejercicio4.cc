@@ -7,19 +7,12 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <time.h>
-
-int handle_error(const char* name)
-{
-		fprintf(stderr, "Something went wrong with the binding of the socket:\n\t");
-		perror(name);
-		exit(EXIT_FAILURE);
-}
+#include "utils.h"
 
 int main(int argn, char* argv[]){
 	if(argn < 2)
 	{
-		fprintf(stderr,"Usage: ./%s [IP] [PORT]\n",argv[0]);
-		exit(EXIT_FAILURE);
+		printTCPServerUsage(argv[0]);
 	}
 	char* ip = argv[1];
 	char* port = argv[2];
@@ -35,19 +28,18 @@ int main(int argn, char* argv[]){
 	hints.ai_protocol = IPPROTO_TCP;
 	
 	if ((rc=getaddrinfo(ip,port,&hints,&result)) != 0){
-		fprintf(stderr,"Something went wrong with gettaddrinfo: %s\n", gai_strerror(rc));		
-		exit(EXIT_FAILURE);
+		handleGAIError("getaddrinfo",rc);
 	}
 
 	if((sd = socket(result->ai_family, result->ai_socktype, IPPROTO_TCP)) < 0)
-		handle_error("Socket");
+		handleError("Socket");
 
 	if(bind(sd, result->ai_addr, result->ai_addrlen) < 0)
-		handle_error("Bind");
+		handleError("Bind");
 	else printf("Listening for conections!\n");
 
 	if(listen(sd,0) < 0)
-		handle_error("Listen");
+		handleError("Listen");
 	freeaddrinfo(result);
 
 	bool exit = false;
@@ -59,12 +51,10 @@ int main(int argn, char* argv[]){
 	char host[NI_MAXHOST], serv[NI_MAXSERV]; 
 	client_len = sizeof(client);
 	if((cliente_sd = accept(sd, (struct sockaddr*)&client, &client_len)) == -1)
-		handle_error("Accept");
+		handleError("Accept");
 	
-	int err;
-	if((err = getnameinfo((struct sockaddr*)&client, client_len,host,NI_MAXHOST,serv,NI_MAXSERV,NI_NUMERICHOST)) != 0){
-		fprintf(stderr,"Something went wrong with getnameinfo:\n\t%s\n",gai_strerror(err));
-		return EXIT_FAILURE;
+	if((rc = getnameinfo((struct sockaddr*)&client, client_len,host,NI_MAXHOST,serv,NI_MAXSERV,NI_NUMERICHOST)) != 0){
+		handleGAIError("getnameinfo",rc);
 	}
 	printf("Conexión desde %s %s\n", host, serv);
 
@@ -72,7 +62,7 @@ int main(int argn, char* argv[]){
 	{
 		bytes=recv(cliente_sd, buffer, 79,0);
 		if(bytes==-1)
-			handle_error("Recv");
+			handleError("Recv");
 		if(bytes == 0)
 			exit = true;
 		else

@@ -9,20 +9,15 @@
 #include <arpa/inet.h>
 #include <time.h>
 #include <signal.h>
+#include "utils.h"
 
 int SOCKD;
 
-int handle_error(const char *name)
-{
-	fprintf(stderr, "Something went wrong with the binding of the socket:\n\t");
-	perror(name);
-	exit(EXIT_FAILURE);
-}
 
 void close_conection_and_exit(int sock)
 {
 	if (close(sock) == -1)
-		handle_error("close");
+		handleError("close");
 	exit(0);
 }
 
@@ -35,9 +30,7 @@ int main(int argn, char *argv[])
 {
 	if (argn < 3)
 	{
-		printf("Usage: ./%s [IP] [PORT]\n", argv[0]);
-		printf("\t Commands:\n \t\t>[t] get time\n\t\t>[d] get day\n\t\t>[q] quit server\n");
-		return 1;
+		printTCPClientUsage(argv[0]);
 	}
 
 	char *ip = argv[1];
@@ -47,7 +40,7 @@ int main(int argn, char *argv[])
 
 	int SOCKD = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
 	if (SOCKD == -1)
-		handle_error("Socket");
+		handleError("Socket");
 	signal(SIGINT, handle_quit);
 
 	sockaddr_in servaddr;
@@ -59,7 +52,7 @@ int main(int argn, char *argv[])
 	char buffer[80];
 
 	if (connect(SOCKD, (struct sockaddr *)&servaddr, sizeof(servaddr)) < 0)
-		handle_error("Connect");
+		handleError("Connect");
 	while (true)
 	{
 		int i = 0;
@@ -73,9 +66,9 @@ int main(int argn, char *argv[])
 		if (buffer[0] != 'q' && i > 1)
 		{
 			if (sendto(SOCKD, buffer, strlen(buffer), 0, (sockaddr *)&servaddr, servlen) == -1)
-				handle_error("SendTo");
+				handleError("SendTo");
 			if (recv(SOCKD, buffer, i, 0) == -1)
-				handle_error("Recv");
+				handleError("Recv");
 			buffer[i] = '\0';
 			printf("%s", buffer);
 		}
