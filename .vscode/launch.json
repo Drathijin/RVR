@@ -4,7 +4,7 @@
 			"name": "Launch",
 			"type": "cppdbg",
 			"request": "launch",
-			"program": "${workspaceFolder}/build/Practica2.1/ejercicio3.a",
+			"program": "${workspaceFolder}/build/Practica2.1/ejercicio4.a",
 			"args": ["127.0.0.1", "49671", "t"],
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}/",
