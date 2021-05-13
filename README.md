@@ -30,7 +30,7 @@ Ricardo Sulbarán Socas, estudiante de desarrollo en Videojuegos de la UCM.
 [x] Ejercicio 1  
 [x] Ejercicio 2  
 [x] Ejercicio 3  
-[ ] Ejercicio 4  
+[x] Ejercicio 4  
 [ ] Ejercicio 5  
 [ ] Ejercicio 6  
 [ ] Ejercicio 7  
