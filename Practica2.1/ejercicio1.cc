@@ -9,7 +9,7 @@
 #include "utils.h"
 
 int main(int argn, char* argv[]){
-	if(argn < 1)
+	if(argn < 2)
 	{
 		printError("Usage: ./%s host",argv[0]);
 		exit(EXIT_FAILURE);

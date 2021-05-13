@@ -10,6 +10,6 @@ void printTCPServerUsage(const char*);
 void handleError(const char*);
 void handleGAIError(const char*,int);
 
-void printError(const char* fmt, ...);
+void printError(const char*, ...);
 
 #endif 

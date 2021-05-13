@@ -11,15 +11,15 @@
 	@param ftm > same as in printf
 	@param ... > same as in printf
 */
-void printError(const char *fmt, ...)
+void printError(const char* fmt, ...)
 {
 	int fmtSize = strlen(fmt);
-	const char *first = "\033[97;41m";
-	const char *last = "\033[0m";
+	char first[] = "\033[97;41m";
+	char last[] = "\033[0m";
 	fmtSize += strlen(first) + strlen(last);
 
 	char newfmt[fmtSize];
-	sprintf("%s%s%s", first, fmt, last);
+	snprintf(newfmt, fmtSize,"%s%s%s",first, fmt, last);
 
 	va_list args;
 	va_start(args, fmt);
