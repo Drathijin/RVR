@@ -33,5 +33,5 @@ Ricardo Sulbarán Socas, estudiante de desarrollo en Videojuegos de la UCM.
 [x] Ejercicio 4  
 [x] Ejercicio 5  
 [x] Ejercicio 6  
-[ ] Ejercicio 7  
+[x] Ejercicio 7  
 [x] Cleanup (abstracción a funciones y comenttarios)  

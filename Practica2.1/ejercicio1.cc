@@ -1,3 +1,7 @@
+/*
+Programa que resuelve host familia y socket type mediante GetAddressInfo
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

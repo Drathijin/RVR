@@ -1,3 +1,9 @@
+/*
+Servidor tiemo UDP
+Características:
+	Escucha comandos [t] [d] y responde con tiempo, día o cierra el servidor.
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

@@ -1,3 +1,9 @@
+/*
+Cliente echo TCP
+Características:
+	Manda una string del servidor e imprime su respuesta (un echo de la misma)
+*/
+
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>

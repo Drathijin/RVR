@@ -1,3 +1,11 @@
+/*
+Servidor TCP (ejercicio 3) multi-thread
+Características:
+	Sigue un modelo accept-and-fork
+	Repite los mensajes de entrada y desconecta con 'q'
+	Esuchca a cntrl-c para cerrar la conexión
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

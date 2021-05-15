@@ -1,3 +1,9 @@
+/*
+Servidor echo TCP
+Características:
+	Devuelve el string de entrada al cliente
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

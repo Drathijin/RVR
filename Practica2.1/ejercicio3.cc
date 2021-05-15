@@ -1,4 +1,10 @@
- #include <stdio.h>
+/*
+Cliente tiempo UDP
+Características:
+	Manda un comando al servidor UDP (ejercicio 4) que devuelve el tiempo actual (t) o el día (d)
+*/
+
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <sys/types.h>
