@@ -59,6 +59,7 @@ public:
 
 int main(int argc, char **argv)
 {
+//Apartado 2
     Jugador one_r("", 0, 0);
     Jugador one_w("Player_ONE", 12, 345);
     int file = open("player.bin", O_RDWR | O_CREAT, 0666); //Create if non existing and open in write only mode
@@ -69,7 +70,9 @@ int main(int argc, char **argv)
     if(bytes==-1)
       handleError("write");
     close(file);
+    //con od -sa podemos ver el contenido del archivo esperado en una representación con caracteres legibles
 
+//Apartado 3
     file = open("player.bin", O_RDONLY);
     if(file==-1)
       handleError("open");
